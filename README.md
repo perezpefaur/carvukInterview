@@ -24,4 +24,4 @@ http://localhost:8080/
 ```
 
 En produccion:
-https://marvel420.netlify.app/
+https://fun-marvel.netlify.app/
