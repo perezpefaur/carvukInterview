@@ -28,8 +28,8 @@ onMounted(() => {
 
 <style lang="css">
 .excel {
-    width: 150em;
-    height: 200vh;
+    width: 80em;
+    height: 70vh;
 }
 
 </style>
