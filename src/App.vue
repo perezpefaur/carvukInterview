@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/"> Inicio </router-link>
+    <router-link to="/" v-if="isLoggedIn"> Inicio </router-link>
     <router-link to="/sheet" v-if="isLoggedIn"> Hoja de excel </router-link>
     <router-link to="/register" v-if="!isLoggedIn"> Registrarse </router-link>
     <router-link to="/signIn" v-if="!isLoggedIn"> Iniciar Sesion </router-link>
@@ -31,7 +31,7 @@ onMounted(() => {
 
 const handleSignOut = () => {
   signOut(auth).then(() => {
-    router.push("/")
+    router.push("/signIn")
   });
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <iframe class="excel" src="https://docs.google.com/spreadsheets/d/1tKGznqnMPUxH0P53WOQ-Ckdz1hlL4H298uE7vu0b6yc/edit?usp=sharing"></iframe>
+      <iframe class="excel" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVVgejXturzFjQSj34C1RTlNSduymedeh1D7T0KKctr1sWmPRWZsqxPZ1spV-3CZW2CpYNsXmmpGZU/pubhtml?widget=true&amp;headers=false"></iframe>
       <p>{{'char.name'}}</p>
   </div>
 </template>
@@ -15,7 +15,7 @@ let auth;
 onMounted(() => {
   auth = getAuth();
   onAuthStateChanged(auth, (user) => {
-    console.log(user);
+    console.log(user.accessToken);
     if (user){
       usuario.value = true;
     } else {
@@ -28,8 +28,8 @@ onMounted(() => {
 
 <style lang="css">
 .excel {
-    width: 900px;
-    height: 500px;
+    width: 50em;
+    height: 30vh;
 }
 
 </style>

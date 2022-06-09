@@ -10,6 +10,9 @@ const routes = [
 		path: "/",
 		name: "home",
 		component: HomeView,
+		meta: {
+			requiresAuth: true,
+		}
 	},
 	{
 		path: "/register",
@@ -74,7 +77,7 @@ router.beforeEach(async (to, from, next) => {
 			next();
 		} else {
 			alert('restringido');
-			next("/");
+			next("/signIn");
 		}
 	} else {
 		next();
