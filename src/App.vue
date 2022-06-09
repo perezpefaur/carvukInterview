@@ -23,8 +23,10 @@ onMounted(() => {
   onAuthStateChanged(auth, (user) => {
     if (user){
       isLoggedIn.value = true;
+      localStorage.setItem("token", user.accessToken);
     } else {
       isLoggedIn.value = false;
+      localStorage.setItem("token", null);
     }
   });
 });

@@ -4,78 +4,31 @@ import axios from "axios";
 
 export default createStore({
 	state: {
-		characters: [],
-		character: [],
-		comics: [],
+		rows: [],
 		url: "",
 	},
 	getters: {},
 	mutations: {
-		getCharacters(state, query) {
-			state.characters = [];
-			if (query != ''){
-				axios
-				.get(
-					`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${query}&limit=100&apikey=${public_key}`
-				)
-				.then((result) => {
-					result.data.data.results.forEach((item) => {
-						state.characters.push(item);
-					});
-				})
-				.catch((error) => {});
-			} else {
-				axios
-				.get(
-					`http://gateway.marvel.com/v1/public/characters?limit=100&apikey=${public_key}`
-				)
-				.then((result) => {
-					result.data.data.results.forEach((item) => {
-						state.characters.push(item);
-					});
-				})
-				.catch((error) => {});
-			}
-		},
-
-		getCharacter(state, id) {
-			state.character = [];
+		getRows(state) {
+			state.rows = [];
+			const config = {
+				headers: { Authorization: `Bearer ${localStorage.token}` }
+			};
 			axios
 				.get(
-					`http://gateway.marvel.com/v1/public/characters/${id}?apikey=${public_key}`
+					`http://localhost:1337/`,
+					config
 				)
 				.then((result) => {
-					result.data.data.results.forEach((item) => {
-						state.character.push(item);
-						console.log(state.character);
-					});
-				});
-		},
-		getComics(state, id) {
-			state.comics = [];
-			axios
-				.get(
-					`http://gateway.marvel.com/v1/public/characters/${id}/comics?apikey=${public_key}`
-				)
-				.then((result) => {
-					result.data.data.results.forEach((item) => {
-						state.comics.push(item);
-						console.log(state.comics);
+					result.data.values.forEach((item) => {
+						state.rows.push(item);
 					});
 				});
 		},
 	},
 	actions: {
-		getCharacters: (context, query) => {
-			context.commit("getCharacters", query);
-		},
-
-		getCharacter: (context, id) => {
-			context.commit("getCharacter", id);
-		},
-
-		getComics: (context, id) => {
-			context.commit("getComics", id);
+		getRows: (context) => {
+			context.commit("getRows");
 		},
 	},
 	modules: {},

@@ -15,7 +15,6 @@ let auth;
 onMounted(() => {
   auth = getAuth();
   onAuthStateChanged(auth, (user) => {
-    console.log(user.accessToken);
     if (user){
       usuario.value = true;
     } else {
