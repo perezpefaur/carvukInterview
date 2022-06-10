@@ -1,7 +1,6 @@
 <template>
   <div>
       <iframe class="excel" src="https://docs.google.com/spreadsheets/d/1tKGznqnMPUxH0P53WOQ-Ckdz1hlL4H298uE7vu0b6yc/edit?usp=sharing"></iframe>
-      <p>{{'char.name'}}</p>
   </div>
 </template>
 
