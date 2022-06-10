@@ -63,21 +63,28 @@ export default {
         })
     },
     methods:{
-        search(event) {
-            const element = document.getElementById('query');
-            this.$store.dispatch('getCharacters', element.value)
+        postMethod(url, needAuth, body) {
+            if (needAuth) {
+                const config = { headers: { Authorization: `Bearer ${localStorage.token}` } };
+                axios.post(
+                    url,
+                    body,
+                    config
+                )
+            } else {
+                const config = { headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8' } };
+                axios.post(
+                    url,
+                    body,
+                    config
+                )
+            }
         },
         onChange(event) {
-            const config = { headers: { Authorization: `Bearer ${localStorage.token}` } };
-			const bodyParameters = {
+            this.postMethod('https://carvuk.herokuapp.com/', true, {
 				estado: event.target.value,
 				ubicacion: event.target.id
-			};
-			axios.post(
-				`https://carvuk.herokuapp.com/`,
-				bodyParameters,
-				config
-            )
+			})
             if (event.target.value === 'Pagado') {
                 let date = new Date()
                 let day = `${(date.getDate())}`.padStart(2,'0');
@@ -90,14 +97,7 @@ export default {
                     monto: cusid_ele[2].innerHTML,
                     fecha: `${day}-${month}-${year}`
 			    };
-                const configuracion = { headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8' } };
-                axios.post(
-				    `https://hooks.zapier.com/hooks/catch/12223778/ba5rfxv/`,
-				    body,
-                    configuracion
-                ).then(result => {
-                    console.log(result);
-                })
+                this.postMethod('https://hooks.zapier.com/hooks/catch/12223778/ba5rfxv/', false, body);
             }
         }
     
