@@ -1,5 +1,4 @@
 import { createStore } from "vuex";
-import { public_key } from "../marvel";
 import axios from "axios";
 
 export default createStore({
