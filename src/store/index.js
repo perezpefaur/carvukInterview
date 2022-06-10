@@ -15,7 +15,7 @@ export default createStore({
 			};
 			axios
 				.get(
-					`http://localhost:1337/`,
+					`https://carvuk.herokuapp.com/`,
 					config
 				)
 				.then((result) => {
@@ -40,7 +40,7 @@ export default createStore({
 			 };
 			axios
 				.post(
-					`http://localhost:1337/`,
+					`https://carvuk.herokuapp.com/`,
 					bodyParameters,
 					config
 				)

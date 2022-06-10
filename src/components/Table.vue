@@ -74,7 +74,7 @@ export default {
 				ubicacion: event.target.id
 			};
 			axios.post(
-				`http://localhost:1337/`,
+				`https://carvuk.herokuapp.com/`,
 				bodyParameters,
 				config
             )
